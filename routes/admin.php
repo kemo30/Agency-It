@@ -23,6 +23,8 @@ Route::group([
 
 ],function(){
 
+   
+
     Route::resource('projects',ProjectController::class,[
        
         'index' => 'projects',

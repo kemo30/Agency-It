@@ -12,6 +12,7 @@ class task extends Model
         'name',
         'details',
         'status',
+        'employee_id',
         'project_id',
     ];
     public function project(){

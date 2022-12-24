@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\api\admin\projectSController;
+use App\Http\Controllers\api\admin\tasksController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('project', projectSController::class);
+Route::apiResource('task', tasksController::class);
+
+
+
