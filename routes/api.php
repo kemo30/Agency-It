@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
 // admin route 
 // using IsAdmin middleware to making sure authenticated user is admin 
 Route::group(['middleware' => ['auth:sanctum','IsAdmin']],function(){
