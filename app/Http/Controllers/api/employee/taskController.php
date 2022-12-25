@@ -16,35 +16,22 @@ class taskController extends Controller
      */
     public function index()
     {
-        $tsaks =task::where('employee_id', Auth::user()->id)->where('status',0)->paginate();
+        $tsaks =task::where('employee_id', '=',Auth::user()->id)->where('status','0')->paginate();
         return $tsaks;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function submitPage(task $task){
-        if($task->status == 0){
-        return  $task; 
+   
 
-        }else{
-            
-           return 0;
-        } 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(task $task)
     {
+        if($task->employee_id == Auth::user()->id){
         return $task;
+    }else{
+        return response()->json([
+            'message' => 'error'
+          ],404);
+    }
     }
 
     /**
@@ -58,7 +45,7 @@ class taskController extends Controller
     {
         if($task->status == 0){
             $request->validate([
-                'submit_details' => 'require',
+                'submit_details' => 'required',
             ]);
             
             $task->update([
@@ -70,7 +57,9 @@ class taskController extends Controller
         
         
             }else{
-           return 0;
+                return response()->json([
+                    'message' => 'this task already submited'
+                  ],400);
             } 
     }
 

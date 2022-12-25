@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->text('details');
             $table->text('submit_details')->nullable();
             $table->foreignId('employee_id')->nullable()->constrained('users','id')->nullOnDelete();
-            $table->enum('status',['0','1'])->default('0');
+            $table->enum('status',['0','1'])->default('0'); // 1 for submited task 0 for not submited task
             $table->foreignId('project_id')->constrained('projects','id')->cascadeOnDelete();
             $table->timestamps();
         });

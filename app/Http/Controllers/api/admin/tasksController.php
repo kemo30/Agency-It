@@ -27,7 +27,13 @@ class tasksController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'employee_id' => 'required|int|exists:users,id',
+            'project_id' => 'required|int|exists:projects,id',
+            'name' => 'required|string|min:2|max:255',
+            'details' =>  'required',
+
+        ]);
        $data= task::create($request->all());
        return $data ;
     }
@@ -55,7 +61,13 @@ class tasksController extends Controller
     public function update(Request $request, task $task)
     {
         
-       
+        $request->validate([
+            'employee_id' => 'required|int|exists:users,id',
+            'project_id' => 'required|int|exists:projects,id',
+            'name' => 'required|string|min:2|max:255',
+            'details' =>  'required',
+
+        ]);
         $task->update($request->all());
 
         

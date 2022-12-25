@@ -20,7 +20,9 @@ class IsAdmin
         return $next($request);
     }
     else{
-        return redirect('/');
+        return response()->json([
+            'message' => 'only admin'
+        ],401);
     }
     }
 }

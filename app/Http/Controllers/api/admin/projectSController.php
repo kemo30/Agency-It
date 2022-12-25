@@ -59,7 +59,9 @@ class projectSController extends Controller
     public function update(Request $request,Project $project)
     {
         
-        
+        $request->validate([
+            'name' => 'required|string|min:2|max:255'
+        ]);
 
         $project->update($request->all());
        
